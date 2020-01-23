@@ -1,0 +1,27 @@
+{
+  "name": "refetch-setup",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world"
+  },
+  "keywords": [
+    "BuckleScript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@glennsl/bs-json": "5.0.1",
+    "@glennsl/rebase": "0.2.1",
+    "bs-fetch": "reasonml-community/bs-fetch#next",
+    "console-png": "1.2.1",
+    "debug-http": "1.1.0",
+    "isomorphic-fetch": "2.2.1",
+    "refetch": "github:glennsl/refetch",
+    "stream-to-buffer": "0.1.0"
+  },
+  "devDependencies": {
+    "bs-platform": "^7.0.2-dev.1"
+  }
+}
