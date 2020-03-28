@@ -18,10 +18,49 @@ pnpm i reasonml-community/bs-fetch#next
 npm run build
 ```
 
-# Build + Watch
+# Use in Production
 
-```
-npm run start
+See: [https://github.com/CodaProtocol/coda/blob/develop/frontend/website/src/bindings/ReFetch.re](https://github.com/CodaProtocol/coda/blob/develop/frontend/website/src/bindings/ReFetch.re)
+
+I think this just reimplements `refetch` in a binding.
+
+```reason
+include Bs_fetch;
+
+// Polyfill fetch during prerendering
+[%raw "require('isomorphic-unfetch')"];
+let fetch =
+    (
+      ~method_=?,
+      ~headers=?,
+      ~body=?,
+      ~referrer=?,
+      ~referrerPolicy=?,
+      ~mode=?,
+      ~credentials=?,
+      ~cache=?,
+      ~redirect=?,
+      ~integrity=?,
+      ~keepalive=?,
+      resource,
+    ) =>
+  fetchWithInit(
+    resource,
+    RequestInit.make(
+      ~method_?,
+      ~headers=?Option.map(HeadersInit.make, headers),
+      ~body?,
+      ~referrer?,
+      ~referrerPolicy?,
+      ~mode?,
+      ~credentials?,
+      ~cache?,
+      ~redirect?,
+      ~integrity?,
+      ~keepalive?,
+      (),
+    ),
+  );
 ```
 
 
